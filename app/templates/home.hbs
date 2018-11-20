@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-4 sale-form">
+      {{#bs-form model=sale onSubmit=(action "submit") as |form|}}
+        {{#form.element
+          controlType="power-select"
+          property="originId"
+          label="Origen"
+        as |el|
+        }}
+          {{#el.control
+            searchPlaceholder="Buscar una ciudad..."
+            search=(action "searchOrigin")
+            selected=originCity
+            onchange=(action (mut originCity))
+          as |originCity|
+          }}
+            {{originCity.name}}
+          {{/el.control}}
+        {{/form.element}}
+
+        {{#form.element
+          controlType="power-select"
+          property="destinationId"
+          label="Destino"
+        as |el|
+        }}
+          {{#el.control
+            searchPlaceholder="Buscar una ciudad..."
+            search=(action "searchDestination")
+            selected=destinationCity
+            onchange=(action (mut destinationCity))
+          as |destinationCity|
+          }}
+            {{destinationCity.name}}
+          {{/el.control}}
+        {{/form.element}}
+
+        {{form.element controlType="input" label="Precio" property="price"}}
+
+        {{bs-button defaultText="Crear" type="primary" buttonType="submit"}}
+      {{/bs-form}}
+    </div>
+  </div>
+  {{sales-modal sales=salesSummary.sales price=salesSummary.sum}}
+  <div class="row">
+    <div class="col-sm-12">
+      {{custom-map data=salesData}}
+    </div>
+  </div>
+</div>

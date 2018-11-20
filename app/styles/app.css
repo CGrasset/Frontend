@@ -1,0 +1,54 @@
+.map-container {
+  display: flex;
+  height: 95vh;
+  align-content: stretch;
+}
+.leaflet-container {
+  margin-top: 15px;
+  height: 100%;
+  width: 100%;
+  background: lightgrey;
+}
+
+.sale-form {
+  background-color: #fff;
+  border-color: #ddd;
+  border-width: 1px;
+  border-radius: 4px 4px 4px 4px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-style: solid;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 15px;
+  margin-top: 15px;
+  position: absolute;
+  top: 0px;
+  z-index: 3000;
+  right: 0px;
+}
+
+.sale-summary {
+  background-color: #fff;
+  border-color: #ddd;
+  border-width: 1px;
+  border-radius: 4px 4px 4px 4px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-style: solid;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  position: absolute;
+  top: 40vh;
+  left: 40vw;
+  z-index: 3000;
+}
+
+.ember-basic-dropdown-content {
+  z-index: 3001;
+}
+
+.color-red {
+  color: red;
+}

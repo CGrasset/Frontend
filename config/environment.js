@@ -29,6 +29,10 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.API_HOST = 'localhost';
+    ENV.API_PORT = '3000';
+    ENV.API_URL = `http://${ENV.API_HOST}:${ENV.API_PORT}`;
+    ENV.WS_URL = `ws://${ENV.API_HOST}:${ENV.API_PORT}/cable`;
   }
 
   if (environment === 'test') {
@@ -46,6 +50,8 @@ module.exports = function(environment) {
   if (environment === 'production') {
     // here you can enable a production-specific feature
   }
+
+  ENV.MAP_URL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
   return ENV;
 };
