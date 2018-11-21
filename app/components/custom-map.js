@@ -1,6 +1,5 @@
 import Component from '@ember/component';
 import config from  '../config/environment';
-import { observer } from '@ember/object';
 
 export default Component.extend({
   classNames: ['map-container'],
@@ -10,7 +9,8 @@ export default Component.extend({
   tileLayerUrl: config.MAP_URL,
   data: null,
 
-  dataObserver: observer('data', function() {
-    return;
-  }),
+  // Bind markers popup on click
+  onEachFeature(feature, layer) {
+    layer.bindPopup(feature.properties.name);
+  }
 });

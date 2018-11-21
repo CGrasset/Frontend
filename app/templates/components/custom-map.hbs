@@ -1,3 +1,7 @@
 {{#leaflet-map lat=lat lng=lng zoom=zoom}}
   {{tile-layer url=tileLayerUrl}}
+
+  {{#each data as |geoJson|}}
+    {{custom-geojson-layer geoJSON=geoJson onEachFeature=onEachFeature}}
+  {{/each}}
 {{/leaflet-map}}

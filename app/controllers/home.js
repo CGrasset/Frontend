@@ -1,6 +1,8 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import { on } from '@ember/object/evented';
+import { A } from '@ember/array';
+import { isArray } from '@ember/array';
 import config from '../config/environment';
 import Ember from 'ember';
 
@@ -11,7 +13,7 @@ export default Controller.extend({
   wsURL: config.WS_URL,
   salesConsumer: null,
   salesSummaryConsumer: null,
-  salesData: null,
+  salesData: A(),
   salesSummary: null,
 
   // Create consumers on controller initialize
@@ -42,7 +44,11 @@ export default Controller.extend({
         this.perform('request');
       },
       received(data) {
-        self.set(setAttribute, data);
+        if (isArray(self.get(setAttribute))){
+          self.get(setAttribute).pushObject(data);
+        }else{
+          self.set(setAttribute, data);
+        }
       },
       disconnect() {}
     });
@@ -57,6 +63,11 @@ export default Controller.extend({
   searchCity(term) {
     return this.get('store').query('city', { city: { url_name: term } });
   },
+
+  // Update layers
+  saleData: computed('salesData', function() {
+    return this.get('salesData') === null ? [] : this.get('salesData');
+  }),
 
   actions: {
     // Action handler for origin city selector
